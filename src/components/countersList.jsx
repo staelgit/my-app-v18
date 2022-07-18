@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import Counter from './counter';
 
-const CountersList = () => {
-   const initialStateCounters = [
-      { id: 0, value: 0, name: 'Ненужная вещь' },
-      { id: 1, value: 1, name: 'Ложка' },
-      { id: 2, value: 2, name: 'Вилка' },
-      { id: 3, value: 3, name: 'Тарелка' },
-      { id: 4, value: 4, name: 'Набор минималиста' },
-   ];
+const initialStateCounters = [
+   { id: 0, value: 0, name: 'Ненужная вещь' },
+   { id: 1, value: 1, name: 'Ложка' },
+   { id: 2, value: 2, name: 'Вилка' },
+   { id: 3, value: 3, name: 'Тарелка' },
+   { id: 4, value: 4, name: 'Набор минималиста' },
+];
 
+const CountersList = () => {
    const [counters, setCounters] = useState(initialStateCounters);
 
    const handleDelete = (id) => {
@@ -21,23 +21,19 @@ const CountersList = () => {
       setCounters(initialStateCounters);
    };
 
-   const handleIncrement = (id) => {
-      setCounters((prevState) =>
-         prevState.map((counter) => {
-            if (counter.id === id) counter.value += 1;
-            return counter;
-         })
-      );
-   };
+   function handleChangeValue(value) {
+      return function (id) {
+         setCounters((prevState) =>
+            prevState.map((counter) => {
+               if (counter.id === id) counter.value += value;
+               return counter;
+            })
+         );
+      };
+   }
 
-   const handleDecrement = (id) => {
-      setCounters((prevState) =>
-         prevState.map((counter) => {
-            if (counter.id === id) counter.value -= 1;
-            return counter;
-         })
-      );
-   };
+   const handleIncrement = handleChangeValue(1);
+   const handleDecrement = handleChangeValue(-1);
 
    return (
       <>

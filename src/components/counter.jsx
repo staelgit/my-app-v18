@@ -1,16 +1,18 @@
 import React from 'react';
 
-const Counter = ({ id, value, name, onIncrement, onDecrement, onDelete }) => {
-   const formatValue = () => (value === 0 ? 'empty' : value);
-
-   const getBadgeClasses = () => {
+const Badge = ({ value }) => {
+   const badgeClasses = () => {
       return `badge m-2 ${value === 0 ? 'bg-warning' : 'bg-primary'}`;
    };
 
+   return <span className={badgeClasses()}>{value || 'empty'}</span>;
+};
+
+const Counter = ({ id, value, name, onIncrement, onDecrement, onDelete }) => {
    return (
       <div>
          <span>{name}</span>
-         <span className={getBadgeClasses()}>{formatValue()}</span>
+         <Badge value={value} />
          <button
             className="btn btn-primary btn-sm m-2"
             onClick={() => onIncrement(id)}
