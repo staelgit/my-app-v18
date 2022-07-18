@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Badge = ({ value }) => {
-   const badgeClasses = () => {
-      return `badge m-2 ${value === 0 ? 'bg-warning' : 'bg-primary'}`;
-   };
+   const badgeClasses = `badge m-2 ${
+      value === 0 ? 'bg-warning' : 'bg-primary'
+   }`;
 
-   return <span className={badgeClasses()}>{value || 'empty'}</span>;
+   return <span className={badgeClasses}>{value || 'empty'}</span>;
 };
 
 const Counter = ({ id, value, name, onIncrement, onDecrement, onDelete }) => {
