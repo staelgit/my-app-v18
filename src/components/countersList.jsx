@@ -21,16 +21,14 @@ const CountersList = () => {
       setCounters(initialStateCounters);
    };
 
-   function handleChangeValue(value) {
-      return function (id) {
-         setCounters((prevState) =>
-            prevState.map((counter) => {
-               if (counter.id === id) counter.value += value;
-               return counter;
-            })
-         );
-      };
-   }
+   const handleChangeValue = (value) => (id) => {
+      setCounters((prevState) =>
+         prevState.map((counter) => {
+            if (counter.id === id) counter.value += value;
+            return counter;
+         })
+      );
+   };
 
    const handleIncrement = handleChangeValue(1);
    const handleDecrement = handleChangeValue(-1);
